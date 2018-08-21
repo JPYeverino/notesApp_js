@@ -12,6 +12,8 @@ window.onload = function () {
     var boardDiv = document.querySelector("#notesBoard");
     var save;
 
+
+    //Retrieve stored notes from local Storage; if the notesData Arr has elements, the DOM is modified with the respective properties.
     if (localStorage.notes) {
         if (JSON.parse(localStorage.getItem("notes")).length > 0) {
             for (
@@ -36,7 +38,7 @@ window.onload = function () {
             }
         }
     }
-
+    //Add the event listener to the 'New Note' button.
     button.addEventListener("click", function () {
         var clone = tContent.cloneNode(true);
         var d = new Date();
@@ -74,13 +76,13 @@ window.onload = function () {
             }, 1000);
         }
     }
-
+    //Add the event listener for each input on the note content using event delegation.
     boardDiv.addEventListener("input", inputListening);
 
     //Callback function for the "remove button" note from the DOM and from the DB
     function closeNoteBtn(e) {
         var actualNoteId = e.target.parentNode.id;
-
+        //Ensures that the element being clicked is the closing button.
         if (e.target.className != "closebtn") {
             return;
         } else {
@@ -90,16 +92,21 @@ window.onload = function () {
         }
     }
 
+    //Add the envent listener for the closing button using event delegation.
     boardDiv.addEventListener("click", closeNoteBtn);
 
     // Function to create a Board, which will contain all the note objects.
     var Board = function () {
+
         var notesData;
+
+        //This detects the content of localStorage; if it has any content, it is transfered to notesData array, if it is not, notesData aray is created.
         if (localStorage.notes) {
             notesData = JSON.parse(localStorage.getItem("notes"));
             console.dir(notesData);
         } else notesData = [];
 
+        //Function that creates a new note Object and push it to the notesData array.
         var createNote = function (id, date) {
             var noteData = {};
 
@@ -111,13 +118,11 @@ window.onload = function () {
             notesData.push(noteData);
             JSONreadyNotes = JSON.stringify(notesData);
             localStorage.setItem("notes", JSONreadyNotes);
-            console.dir(notesData);
-            console.dir(JSON.parse(localStorage.getItem("notes")));
-
-            // assert(true, 'Note object created ' + noteData.noteID + '. Creation Date: ' + noteData.creationDate);
+            
             return this;
         };
 
+        //Function that saves the modified Note.
         var saveNote = function (id, content, savedDate) {
             if (findNote(id) >= 0) {
                 notesData[findNote(id)].content = content;
@@ -126,11 +131,11 @@ window.onload = function () {
                 localStorage.setItem("notes", JSONreadyNotes);
                 console.dir(localStorage.getItem("notes"));
             } else console.log("not found");
-            console.dir(notesData);
-            console.dir(JSONreadyNotes);
+            
             return this;
         };
 
+        //Function that helps to find the index of a note by the given ID.
         var findNote = function (id) {
             for (var i = 0; i < notesData.length; i++) {
                 if (notesData[i].noteID === id.toString()) {
@@ -140,31 +145,17 @@ window.onload = function () {
             return -1;
         };
 
+        //Function that deletes a note from de notesData array when it is removed from the DOM.
         var removeNote = function (id) {
             if (findNote(id) >= 0) {
                 notesData.splice(findNote(id), 1);
                 JSONreadyNotes = JSON.stringify(notesData);
                 localStorage.setItem("notes", JSONreadyNotes);
             } else console.log("not found to remove");
-            console.dir(notesData);
-            console.dir(JSONreadyNotes);
 
             return this;
         };
-
-        var getNoteID = function (noteIndex) {
-            return notesData[noteIndex].noteID;
-        };
-        var getContent = function (noteIndex) {
-            return notesData[noteIndex].content;
-        };
-        var getCreationDate = function (noteIndex) {
-            return notesData[noteIndex].creationDate;
-        };
-        var getModifyDate = function (noteIndex) {
-            return notesData[noteIndex].modifyDate;
-        };
-
+        
         return {
             createNote: createNote,
             findNote: findNote,
