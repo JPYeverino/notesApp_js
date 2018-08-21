@@ -155,16 +155,12 @@ window.onload = function () {
 
             return this;
         };
-        
+
         return {
             createNote: createNote,
             findNote: findNote,
             saveNote: saveNote,
-            removeNote: removeNote,
-            getNoteID: getNoteID,
-            getContent: getContent,
-            getCreationDate: getCreationDate,
-            getModifyDate: getModifyDate
+            removeNote: removeNote
         };
     }; //Finishing Board();
 
