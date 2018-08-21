@@ -1,0 +1,84 @@
+???????????????????? HTML ????????????????????????????
+    <div id="noteContainer">
+        <p id='test1'>Test element</p>
+        <p id='test2'>Test element 2</p>
+    </div>
+?????????????????????????????????????????????????????
+
+>>>>>>>>>>>>>>>>>  SCRIPT  >>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Set the contentEditable to true for each span, clicking on the 2nd one makes the first one to be false.
+
+
+window.onload = function () {
+            var test1 = document.getElementById('test1');
+            test1.onclick = function (e) {
+                this.contentEditable = true;
+                this.focus();
+                this.style.backgroundColor = '#E0E0E0';
+                this.style.border = '1px dotted black';
+            }
+
+            var test2 = document.getElementById('test2');
+            test2.onclick = function (e) {
+                test1.contentEditable = false;
+                test1.style.backgroundColor = '#FFF';
+                test1.style.border = '0px';
+                this.contentEditable = true;
+                this.focus();
+                this.style.backgroundColor = '#E0E0E0';
+                this.style.border = '1px dotted black';
+            }
+        }
+
+>>>>>>>>>>>>>>>>>>>>>>>>> SCRIPT >>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Get the input event listener
+
+window.onload = function () {
+
+            var log = document.getElementById("modifyD");
+            var editable = document.getElementById("test1");
+            var evtFired = false;
+
+           
+            var myVar;
+            function listener(evt) {
+                evtFired = true;
+                log.textContent += evt.type + "\n";
+            }
+
+
+            if (editable.addEventListener) {
+                editable.addEventListener("input", listener, false);
+                // editable.addEventListener("DOMNodeInserted", listener, false);
+                // editable.addEventListener("DOMNodeRemoved", listener, false);
+                // editable.addEventListener("DOMCharacterDataModified", listener, false);
+            } else console.log("saved");
+
+
+
+        };
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+???????????????????? HTML ????????????????????????????
+     <template id="templNotes">
+        <div class="noteContainer">
+            <p class='test1' contenteditable="true"></p>
+
+            <p class="createD"></p>
+            <p class="modifyD"></p>
+        </div>
+    </template>
+?????????????????????????????????????????????????????
+
+>>>>>>>>>>>>>>>>>>> SCRIPT  >>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Render a template
+function note() {
+            var t = document.querySelector("#templNotes");
+            var clone = document.importNode(t.content, true);
+            document.body.appendChild(clone);
+        }
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

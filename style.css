@@ -1,0 +1,39 @@
+
+#results li.pass {
+    color: rgb(35, 58, 2);
+}
+
+#results li.fail {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.note {
+    border: 1px solid gray;
+}
+.input1 {
+    min-height: 200px;
+}
+
+#notesBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1em;
+
+}
+.closebtn {
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .closebtn:hover {
+    color: rgb(99, 98, 98);
+  }
+
+  .createD, .modifyD {
+      font-size: 0.5em;
+  }
+
+
