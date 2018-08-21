@@ -88,7 +88,6 @@ window.onload = function () {
         } else {
             board.removeNote(actualNoteId);
             boardDiv.removeChild(e.target.parentNode);
-            console.dir(e.target);
         }
     }
 
@@ -103,7 +102,6 @@ window.onload = function () {
         //This detects the content of localStorage; if it has any content, it is transfered to notesData array, if it is not, notesData aray is created.
         if (localStorage.notes) {
             notesData = JSON.parse(localStorage.getItem("notes"));
-            console.dir(notesData);
         } else notesData = [];
 
         //Function that creates a new note Object and push it to the notesData array.
@@ -129,7 +127,6 @@ window.onload = function () {
                 notesData[findNote(id)].modifyDate = savedDate;
                 JSONreadyNotes = JSON.stringify(notesData);
                 localStorage.setItem("notes", JSONreadyNotes);
-                console.dir(localStorage.getItem("notes"));
             } else console.log("not found");
             
             return this;
