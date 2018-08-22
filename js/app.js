@@ -95,7 +95,7 @@ window.onload = function () {
     boardDiv.addEventListener("click", closeNoteBtn);
 
     // Function to create a Board, which will contain all the note objects.
-    var Board = function () {
+    var board = (function () {
 
         var notesData;
 
@@ -159,8 +159,8 @@ window.onload = function () {
             saveNote: saveNote,
             removeNote: removeNote
         };
-    }; //Finishing Board();
+    })(); //Finishing Board();
 
     //Create a Notes Board
-    var board = Board();
+    // var board = Board();
 };
