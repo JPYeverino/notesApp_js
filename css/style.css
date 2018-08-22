@@ -12,10 +12,14 @@ html {
     background-size: cover;
 }
 .note {
-    border: 1px solid gray;
+    background-color: rgba(242, 210, 169, 0.8);
+    font-family: 'Cambria';
+    margin: 15px;
+    padding: 15px;
+    display: grid;
 }
 .input1 {
-    min-height: 200px;
+    height: 100%;
 }
 
 #notesBoard {
