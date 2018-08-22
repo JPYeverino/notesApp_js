@@ -155,7 +155,6 @@ window.onload = function () {
 
         return {
             createNote: createNote,
-            findNote: findNote,
             saveNote: saveNote,
             removeNote: removeNote
         };
