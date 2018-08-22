@@ -7,7 +7,10 @@
     text-decoration: line-through;
     color: gray;
 }
-
+html {
+    background: url(https://i.imgur.com/3cUu0X5.jpg) bottom center;
+    background-size: cover;
+}
 .note {
     border: 1px solid gray;
 }
