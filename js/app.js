@@ -94,17 +94,17 @@ window.onload = function () {
     //Add the envent listener for the closing button using event delegation.
     boardDiv.addEventListener("click", closeNoteBtn);
 
-    // Function to create a Board, which will contain all the note objects.
+    // Create a board module, which will contain all the note objects.
     var board = (function () {
 
-        var notesData;
+        var notesData; //private Variable.
 
         //This detects the content of localStorage; if it has any content, it is transfered to notesData array, if it is not, notesData aray is created.
         if (localStorage.notes) {
             notesData = JSON.parse(localStorage.getItem("notes"));
         } else notesData = [];
 
-        //Function that creates a new note Object and push it to the notesData array.
+        //Public method that creates a new note Object and push it to the notesData array.
         var createNote = function (id, date) {
             var noteData = {};
 
@@ -116,11 +116,9 @@ window.onload = function () {
             notesData.push(noteData);
             JSONreadyNotes = JSON.stringify(notesData);
             localStorage.setItem("notes", JSONreadyNotes);
-            
-            return this;
         };
 
-        //Function that saves the modified Note.
+        //Public method that saves the modified Note.
         var saveNote = function (id, content, savedDate) {
             if (findNote(id) >= 0) {
                 notesData[findNote(id)].content = content;
@@ -128,11 +126,9 @@ window.onload = function () {
                 JSONreadyNotes = JSON.stringify(notesData);
                 localStorage.setItem("notes", JSONreadyNotes);
             } else console.log("not found");
-            
-            return this;
         };
 
-        //Function that helps to find the index of a note by the given ID.
+        //Private method that helps to find the index of a note by the given ID.
         var findNote = function (id) {
             for (var i = 0; i < notesData.length; i++) {
                 if (notesData[i].noteID === id.toString()) {
@@ -142,7 +138,7 @@ window.onload = function () {
             return -1;
         };
 
-        //Function that deletes a note from de notesData array when it is removed from the DOM.
+        //Public method that deletes a note from de notesData array when it is removed from the DOM.
         var removeNote = function (id) {
             if (findNote(id) >= 0) {
                 notesData.splice(findNote(id), 1);
