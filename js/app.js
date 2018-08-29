@@ -38,6 +38,7 @@ window.onload = function () {
             }
         }
     }
+    
     //Add the event listener to the 'New Note' button.
     button.addEventListener("click", function () {
         var clone = tContent.cloneNode(true);
@@ -94,12 +95,16 @@ window.onload = function () {
     //Add the envent listener for the closing button using event delegation.
     boardDiv.addEventListener("click", closeNoteBtn);
 
+
+
+
     // Create a board module, which will contain all the note objects.
     var board = (function () {
 
         var notesData; //private Variable.
 
         //This detects the content of localStorage; if it has any content, it is transfered to notesData array, if it is not, notesData aray is created.
+
         if (localStorage.notes) {
             notesData = JSON.parse(localStorage.getItem("notes"));
         } else notesData = [];
