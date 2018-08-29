@@ -56,6 +56,8 @@ window.onload = function () {
         var actualNoteId = e.target.parentNode.id;
         var actualNoteContent = e.target.textContent;
 
+        var save;
+
         if (save) {
             clearTimeout(save);
             console.log("cancel save");
